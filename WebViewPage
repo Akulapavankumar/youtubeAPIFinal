@@ -1,0 +1,50 @@
+ <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" ItemSelected="PlayVideo" x:Name="MyList">
+
+
+  public void PlayVideo(object sender, SelectedItemChangedEventArgs e)
+        {
+            var video = e.SelectedItem as YouTubeItem;
+            Navigation.PushAsync(new WebViewPage(video.VideoId));
+            //if (video.VideoId != null)
+            //{
+            //    Device.OpenUri(new Uri("https://www.youtube.com/watch?v=" + video.VideoId));
+            //}
+            //else
+            //{
+            //    DisplayAlert("Pavan","ID Is Null !", "ok");
+            //}
+        }
+
+page .cs
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace YouTubeEmbed.Pages
+{
+    public class WebViewPage : ContentPage
+    {
+        public WebViewPage(string data)
+        {
+            string VideoId = data;
+
+            WebView webview = new WebView
+            {
+                Source = ("https://www.youtube.com/watch?v=" + VideoId),
+                VerticalOptions = LayoutOptions.FillAndExpand
+            };
+            this.Content = new StackLayout
+            {
+                Children = {
+                     webview
+                }
+            };
+
+        }
+    }
+}
