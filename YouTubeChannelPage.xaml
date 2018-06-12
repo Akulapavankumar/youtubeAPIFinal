@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage Title="YouTube Channel" xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="YouTubeEmbed.Pages.YouTubeChannelPage">
+    x:Class="YouTubeEmbed.Pages.YouTubeChannelPage"
+             NavigationPage.HasNavigationBar="True">
 	<ContentPage.Content>
-        <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" ItemSelected="PlayVideo">
+        <StackLayout>
+            <!--<SearchBar TextChanged="SearchBar" x:Name="data" SearchButtonPressed="OnSearchBarButtonPressed"></SearchBar>-->
+            <!--<SearchBar x:Name="searchBar" Placeholder="Search text" TextChanged="OnSearchBarTextChanged" SearchButtonPressed="OnSearchBarButtonPressed" />-->
+            <StackLayout Orientation="Horizontal" Padding="15,20,15,20">
+                <Entry Placeholder="Search" x:Name="searchBar" HorizontalOptions="Center" WidthRequest="250"></Entry>
+                <Button Text="Search" Clicked="SearchDataContent" FontSize="14" BorderRadius = "36" ></Button>
+            </StackLayout>
+            <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" ItemSelected="PlayVideo" x:Name="MyList">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -21,5 +29,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
